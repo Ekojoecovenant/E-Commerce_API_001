@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Your Cart</title>
+    <link href="/dist/output.css" rel="stylesheet" />
+</head>
+
+<body class="p-6 bg-gray-100 text-gray-900">
+    <h1 class="text-2xl font-bold mb-4">Your Cart</h1>
+    <div id="cart-items" class="space-y-4"></div>
+    <p class="mt-6 font-bold" id="total"></p>
+    <button id="clear-cart" class="mt-4 bg-red-600 text-white px-3 py-2 rounded">
+        Clear Cart
+    </button>
+
+    <script>
+        let cart = JSON.parse(localStorage.getItem("cart") || "[]");
+        const container = document.getElementById("cart-items");
+
+        function saveAndRender() {
+            localStorage.setItem("cart", JSON.stringify(cart));
+            renderCart();
+        }
+
+        function renderCart() {
+            container.innerHTML = "";
+            let total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price * item.qty;
+
+                const div = document.createElement("div");
+                div.className = "p-4 bg-white rounded shadow flex justify-between items-center";
+
+                div.innerHTML = `
+                    <div>
+                        <h2 class="text-lg font-semibold">${item.title}</h2>
+                        <p>$${item.price} × ${item.qty}</p>
+                    </div>
+                    <div class="flex gap-2 items-center">
+                        <button class="bg-gray-300 px-2 rounded text-sm" data-action="dec" data-index="${index}">-</button>
+                        <button class="bg-gray-300 px-2 rounded text-sm" data-action="inc" data-index="${index}">+</button>
+                        <button class="bg-red-600 text-white px-2 rounded text-sm" data-action="remove" data-index="${index}">x</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            document.getElementById("total").textContent = "Total: $" + total.toFixed(2);
+            document.querySelectorAll("button[data-action]").forEach((btn) => {
+                const index = parseInt(btn.dataset.index);
+                const action = btn.dataset.action;
+
+                btn.onclick = () => {
+                    if (action === "inc") cart[index].qty += 1;
+                    if (action === "dec") cart[index].qty = Math.max(1, cart[index].qty - 1);
+                    if (action === "remove") cart.splice(index, 1);
+                    saveAndRender();
+                };
+            });
+        }
+
+        document.getElementById("clear-cart").onclick = () => {
+            localStorage.removeItem("cart");
+            location.reload();
+        };
+
+        renderCart();
+    </script>
+
+</body>
+
+</html>

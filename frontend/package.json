@@ -1,0 +1,15 @@
+{
+  "name": "ecommerce-frontend",
+  "version": "1.0.0",
+  "scripts": {
+    "tailwind": "@tailwindcss/cli -i ./style.css -o ./dist/output.css --watch",
+    "start": "lite-server"
+  },
+  "devDependencies": {
+    "lite-server": "^2.6.1",
+    "tailwindcss": "^4.1.8"
+  },
+  "dependencies": {
+    "@tailwindcss/cli": "^4.1.8"
+  }
+}

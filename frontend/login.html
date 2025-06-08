@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Login</title>
+    <link href="./dist/output.css" rel="stylesheet" />
+</head>
+
+<body class="bg-gray-100 flex justify-center items-center h-screen">
+    <form id="login-form" class="bg-white p-8 rounded shadow w-full max-w-md space-y-4">
+        <h2 class="text-xl font-bold">Login</h2>
+        <input name="email" type="email" placeholder="Email" required class="w-full p-2 border rounded" />
+        <input name="password" type="password" placeholder="Password" required class="w-full p-2 border rounded" />
+        <button class="bg-blue-600 text-white px-4 py-2 rounded w-full">Login</button>
+        <p id="login-msg" class="text-sm text-red-500"></p>
+    </form>
+
+    <script src="login.js"></script>
+</body>
+
+</html>

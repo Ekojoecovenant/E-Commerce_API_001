@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Admin Panel</title>
+    <link href="/dist/output.css" rel="stylesheet" />
+</head>
+
+<body class="p-6 bg-gray-100 text-gray-900">
+    <div class="flex justify-between mb-6">
+        <h1 class="text-2xl font-bold">Admin Panel</h1>
+        <a href="/index.html" class="text-blue-600 underline">Back to Home</a>
+    </div>
+
+    <form id="product-form" class="bg-white p-4 rounded shadow space-y-3 max-w-md mb-6">
+        <h2 class="text-lg font-semibold">Create / Update Product</h2>
+        <input type="hidden" name="id" />
+        <input name="title" placeholder="Title" class="w-full p-2 border rounded" required />
+        <textarea name="description" placeholder="Description" class="w-full p-2 border rounded"></textarea>
+        <input name="price" type="number" placeholder="Price" class="w-full p-2 border rounded" required />
+        <select name="categoryId" class="w-full p-2 border rounded" required></select>
+        <button class="bg-indigo-600 text-white px-4 py-2 rounded w-full">Save Product</button>
+    </form>
+
+    <div id="product-list" class="grid grid-cols-1 md:grid-cols-2 gap-4"></div>
+
+    <script src="admin.js"></script>
+</body>
+
+</html>
