@@ -32,7 +32,8 @@ logoutBtn.addEventListener("click", () => {
 
 // 📦 Fetch and show products
 // fetch("http://localhost:3147/api/products", {
-fetch("http://localhost:40000/api/products", {
+// fetch("http://localhost:40000/api/products", {
+fetch("https://e-commerce-api-001.onrender.com/api/products", {
   headers: {
     Authorization: `Bearer ${token}`,
   },

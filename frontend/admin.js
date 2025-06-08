@@ -10,9 +10,13 @@ const categorySelect = form.categoryId;
 
 async function fetchCategories() {
   // const res = await fetch("http://localhost:3147/api/categories", {
-  const res = await fetch("http://localhost:40000/api/categories", {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  // const res = await fetch("http://localhost:40000/api/categories", {
+  const res = await fetch(
+    "https://e-commerce-api-001.onrender.com/api/categories",
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
   const cats = await res.json();
   categorySelect.innerHTML = cats.categories
     .map((c) => `<option value="${c.id}">${c.name}</option>`)
@@ -21,9 +25,13 @@ async function fetchCategories() {
 
 async function fetchProducts() {
   // const res = await fetch("http://localhost:3147/api/products", {
-  const res = await fetch("http://localhost:40000/api/products", {
-    headers: { Authorization: `Bearer ${token}` },
-  });
+  // const res = await fetch("http://localhost:40000/api/products", {
+  const res = await fetch(
+    "https://e-commerce-api-001.onrender.com/api/products",
+    {
+      headers: { Authorization: `Bearer ${token}` },
+    }
+  );
   const products = await res.json();
   productList.innerHTML = "";
 
@@ -51,10 +59,14 @@ async function fetchProducts() {
     div.querySelector(".delete-btn").onclick = async () => {
       if (confirm("Delete this product?")) {
         // await fetch(`http://localhost:3147/api/products/${p.id}`, {
-        await fetch(`http://localhost:40000/api/products/${p.id}`, {
-          method: "DELETE",
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        // await fetch(`http://localhost:40000/api/products/${p.id}`, {
+        await fetch(
+          `https://e-commerce-api-001.onrender.com/api/products/${p.id}`,
+          {
+            method: "DELETE",
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         fetchProducts();
       }
     };
@@ -77,8 +89,10 @@ form.addEventListener("submit", async (e) => {
   const url = id
     ? // ? `http://localhost:3147/api/products/${id}`
       // : "http://localhost:3147/api/products";
-      `http://localhost:40000/api/products/${id}`
-    : "http://localhost:40000/api/products";
+      //   `http://localhost:40000/api/products/${id}`
+      // : "http://localhost:40000/api/products";
+      `https://e-commerce-api-001.onrender.com/api/products/${id}`
+    : "https://e-commerce-api-001.onrender.com/api/products";
 
   await fetch(url, {
     method,
